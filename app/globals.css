@@ -67,7 +67,7 @@ nav {
 
 /* HERO */
 .hero {
-  position: relative; min-height: 100vh;
+  position: relative; min-height: 680px;
   display: flex; align-items: center; overflow: hidden;
   background: var(--brand-darker);
 }
