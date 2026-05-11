@@ -9,7 +9,13 @@ export default function RevealObserver() {
       { threshold: 0.08 }
     );
     els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    // Fallback for iframe contexts (e.g. Wix) where internal scroll never fires
+    const fallback = setTimeout(() => {
+      document.querySelectorAll(".fade-up:not(.visible)").forEach((el) => el.classList.add("visible"));
+    }, 1200);
+
+    return () => { io.disconnect(); clearTimeout(fallback); };
   }, []);
   return null;
 }
